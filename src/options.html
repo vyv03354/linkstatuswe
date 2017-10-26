@@ -1,0 +1,34 @@
+<!DOCTYPE html><meta charset=utf-8>
+<style>label { display: block; }</style>
+<table><tr valign="top"><td width="50%">
+<label><input type="checkbox" id="showLastVisited">Show last visited date</label>
+<label><input type="checkbox" id="useISODate">Use YYYY-MM-DD date format</label>
+<label><input type="checkbox" id="lastVisitedInFront">Show date before link adress</label>
+<label>Prefix for bookmarked links: <input type="text" id="bookmarkedPrefix"></label>
+<label>Prefix for visited links: <input type="text" id="visitedPrefix"></label>
+<fieldset><legend id="groupOlderVisited">How to handle recent visit times</legend>
+<label>Prefer visit time older than: <input type="number" id="lastVisitedOlderThan" min="0"></label>
+<label>Check N most recent visits: <input type="number" id="lastVisitedQueryLimit" min="0"></label>
+<label><input type="checkbox" id="lastVisitedTwoDates">Show also the latest visit time</label>
+</fieldset>
+</td><td width="50%">
+<label><input type="checkbox" id="useCustomFormat">Use custom format</label>
+<label>Link target text format: <input type="text" id="customOverLink"></label>
+<label>Default date format: <input type="text" id="customDateDefault"></label>
+<label>Weekday names: <input type="text" id="customWeekdayNames"></label>
+<label>Month names: <input type="text" id="customMonthNames"></label>
+<fieldset><legend id="groupLimitFormat">Date time limits and formats in ascending order</legend>
+<table>
+<tr><td id="customLimit">Limit</td><td id="customFormat">Format</td></tr>
+<tr><td><input type="number" id="customLimit0" min="0"></td><td><input type="text" id="customDate0"></td></tr>
+<tr><td><input type="number" id="customLimit1" min="0"></td><td><input type="text" id="customDate1"></td></tr>
+<tr><td><input type="number" id="customLimit2" min="0"></td><td><input type="text" id="customDate2"></td></tr>
+<tr><td><input type="number" id="customLimit3" min="0"></td><td><input type="text" id="customDate3"></td></tr>
+<tr><td><input type="number" id="customLimit4" min="0"></td><td><input type="text" id="customDate4"></td></tr>
+<tr><td><input type="number" id="customLimit5" min="0"></td><td><input type="text" id="customDate5"></td></tr>
+<tr><td><input type="number" id="customLimit6" min="0"></td><td><input type="text" id="customDate6"></td></tr>
+</table>
+</fieldset>
+</td></tr></table>
+<script src="defaults.js"></script>
+<script src="options.js"></script>

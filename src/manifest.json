@@ -1,0 +1,36 @@
+{
+  "description": "__MSG_extensionDescription__",
+  "manifest_version": 2,
+  "default_locale": "en",
+  "name": "Link Status WE",
+  "version": "1.0.5",
+  "applications": {
+    "gecko": {
+      "id": "linkstatuswe@emk.name"
+    }
+  },
+  "permissions": [
+    "bookmarks",
+    "history",
+    "storage"
+  ],
+  "background": {
+    "scripts": ["defaults.js", "background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["linkstatus.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "browser_style": true
+  },
+  "web_accessible_resources": [
+    "status.html",
+    "status.js"
+  ]
+}
