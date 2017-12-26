@@ -12,7 +12,7 @@ if (self == top) {
   iframe.style.margin = 0;
   iframe.style.padding = 0;
   iframe.style.zIndex = 2147483647;
-  document.body.appendChild(iframe);
+  document.documentElement.appendChild(iframe);
   iframe.contentWindow.location = chrome.extension.getURL("status.html");
 }
 let anchor = null;
