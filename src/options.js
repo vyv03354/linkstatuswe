@@ -44,8 +44,8 @@ for (let elem of document.querySelectorAll("*[id]")) {
     if (elem.type == "text" || elem.type == "number") {
       let textNode = elem.previousSibling;
       if (textNode != null) {
-        textNode.nodeValue = chrome.i18n.getMessage(elem.id + ".label");
-        let accessKey = chrome.i18n.getMessage(elem.id + ".accesskey");
+        textNode.nodeValue = chrome.i18n.getMessage(elem.id + "_label");
+        let accessKey = chrome.i18n.getMessage(elem.id + "_accesskey");
         insertAccessKeyNode(elem.parentNode, elem, "(", accessKey, "): ");
       }
       continue;
@@ -53,20 +53,20 @@ for (let elem of document.querySelectorAll("*[id]")) {
     if (elem.type == "checkbox") {
       let textNode = elem.nextSibling;
       if (textNode != null) {
-        textNode.nodeValue = chrome.i18n.getMessage(elem.id + ".label");
-        let accessKey = chrome.i18n.getMessage(elem.id + ".accesskey");
+        textNode.nodeValue = chrome.i18n.getMessage(elem.id + "_label");
+        let accessKey = chrome.i18n.getMessage(elem.id + "_accesskey");
         insertAccessKeyNode(elem.parentNode, null, "(", accessKey, ")");
       }
       continue;
     }
     continue;
   }
-  let text = chrome.i18n.getMessage(elem.id + ".label");
+  let text = chrome.i18n.getMessage(elem.id + "_label");
   elem.textContent = text;
 }
 for (let input of document.querySelectorAll("input[id]")) {
   if (input.parentNode.tagName == "LABEL") {
-    input.accessKey = chrome.i18n.getMessage(input.id + ".accesskey");
+    input.accessKey = chrome.i18n.getMessage(input.id + "_accesskey");
   }
   input.addEventListener(
     "change",
