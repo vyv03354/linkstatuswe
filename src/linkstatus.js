@@ -2,6 +2,7 @@ if (self == top) {
   let iframe = document.createElement("iframe");
   iframe.frameBorder = 0;
   iframe.scrolling = 0;
+  iframe.style.background = "transparent";
   iframe.style.fontSize = "initial";
   iframe.style.width = "100%";
   iframe.style.height = "100%";

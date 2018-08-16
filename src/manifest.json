@@ -3,7 +3,7 @@
   "manifest_version": 2,
   "default_locale": "en",
   "name": "Link Status WE",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "applications": {
     "gecko": {
       "id": "linkstatuswe@emk.name"
