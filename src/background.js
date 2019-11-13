@@ -296,18 +296,19 @@ function formatStatusText(msg) {
 chrome.runtime.onMessage.addListener(
   function(request, sender) {
     if (!request.url) {
-      chrome.tabs.sendMessage(sender.tab.id, "");
+      request.statusText = "";
+      chrome.tabs.sendMessage(sender.tab.id, request);
       return;
     }
     chrome.bookmarks.search(request, function(results) {
       let bookmarked = results.length > 0;
       chrome.history.getVisits(request, function callback(results) {
-        let statusText = formatStatusText({
+        request.statusText = formatStatusText({
           url: request.url,
           bookmarked: bookmarked,
           visitTimes: results.map(result => result.visitTime)
         });
-        chrome.tabs.sendMessage(sender.tab.id, statusText);
+        chrome.tabs.sendMessage(sender.tab.id, request);
       });
     });
   }

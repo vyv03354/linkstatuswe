@@ -16,7 +16,7 @@ if (self == top) {
   document.documentElement.appendChild(iframe);
   iframe.contentWindow.location = chrome.extension.getURL("status.html");
 }
-let anchor = null;
+let url = "";
 document.addEventListener("mouseover", function(e) {
   let a;
   for (a = e.target; a != null; a = a.parentElement) {
@@ -24,16 +24,19 @@ document.addEventListener("mouseover", function(e) {
       break;
     }
   }
-  if (a == anchor) {
-    return;
-  }
-  anchor = a;
   if (a == null) {
-    chrome.runtime.sendMessage({});
-    return;
+    if (url == "") {
+      return;
+    }
+    url = "";
+  } else {
+    if (a.href == url) {
+      return;
+    }
+    url = a.href;
   }
-  a.addEventListener("mouseout", function onmouseout(e) {
-    a.removeEventListener("mouseout", onmouseout);
-  });
-  chrome.runtime.sendMessage({url: a.href});
+  chrome.runtime.sendMessage({url: url});
 }, true);
+chrome.runtime.onMessage.addListener(function(request) {
+  url = request.url;
+});
