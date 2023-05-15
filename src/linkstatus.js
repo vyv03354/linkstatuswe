@@ -3,6 +3,13 @@ if (self == top) {
   iframe.frameBorder = 0;
   iframe.scrolling = 0;
   iframe.style.setProperty("background", "transparent", "important");
+  // Set `color-scheme` to the initial value so that the color matches with
+  // the iframe content. Othewise the iframe will lose transparency
+  // (See https://bugzilla.mozilla.org/show_bug.cgi?id=1738380 for details).
+  // We have to use `light` explicitly because `initial` does not seem to
+  // initialize the `color-scheme` correctly if the page sets multiple
+  // `color-scheme` values (such as `light dark`).
+  iframe.style.setProperty("color-scheme", "light", "important");
   iframe.style.fontSize = "initial";
   iframe.style.width = "100%";
   iframe.style.height = "100%";
