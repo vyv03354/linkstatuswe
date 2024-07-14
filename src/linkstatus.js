@@ -28,12 +28,21 @@ if (self == top) {
   iframe.contentWindow.location = chrome.runtime.getURL("status.html");
 }
 let url = "";
-document.addEventListener("mouseover", function(e) {
-  let a;
-  for (a = e.target; a != null; a = a.parentElement) {
-    if (a.tagName == "A") {
+function onMouseOver(e) {
+  let a, shadowRoot;
+  for (a = e.target; a != null; a = shadowRoot.elementFromPoint(e.clientX, e.clientY)) {
+    shadowRoot = a.openOrClosedShadowRoot || a.shadowRoot;
+    let found = false;
+    for (; a != null; a = a.parentElement) {
+      if (a.tagName == "A") {
+        found = true;
+        break;
+      }
+    }
+    if (found || !shadowRoot) {
       break;
     }
+    shadowRoot.addEventListener("mouseover", onMouseOver, true);
   }
   if (a == null) {
     if (url == "") {
@@ -47,7 +56,8 @@ document.addEventListener("mouseover", function(e) {
     url = a.href;
   }
   chrome.runtime.sendMessage({url: url});
-}, true);
+}
+document.addEventListener("mouseover", onMouseOver, true);
 chrome.runtime.onMessage.addListener(function(request) {
   url = request.url;
 });
