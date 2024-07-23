@@ -300,8 +300,15 @@ chrome.runtime.onMessage.addListener(
       chrome.tabs.sendMessage(sender.tab.id, request);
       return;
     }
-    chrome.bookmarks.search(request, function(results) {
-      let bookmarked = results.length > 0;
+    try {
+      chrome.bookmarks.search(request, function(results) {
+        let bookmarked = results.length > 0;
+        findVisits(bookmarked);
+      });
+    } catch (e) {
+      findVisits(false);
+    }
+    function findVisits(bookmarked) {
       chrome.history.getVisits(request, function callback(results) {
         request.statusText = formatStatusText({
           url: request.url,
@@ -310,6 +317,6 @@ chrome.runtime.onMessage.addListener(
         });
         chrome.tabs.sendMessage(sender.tab.id, request);
       });
-    });
+    }
   }
 );
