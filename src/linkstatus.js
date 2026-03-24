@@ -34,7 +34,7 @@ function onMouseOver(e) {
     shadowRoot = a.openOrClosedShadowRoot || a.shadowRoot;
     let found = false;
     for (; a != null; a = a.parentElement) {
-      if (a.tagName == "A") {
+      if (a.tagName && a.tagName.toLowerCase() == "a") {
         found = true;
         break;
       }
